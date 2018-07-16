@@ -111,4 +111,135 @@ public class Bagian4 implements GLEventListener, MouseListener, MouseMotionListe
         gl.glMatrixMode(GL.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
+    
+    static float zoom = 1.86f;
+    static float out = 0.01f;
+    static float plus = 0.003f;
+    static float batas1 = 2.3f;
+    static float batas2 = 1.87f;
+    static float rotkaret = 0.0f;
+    static float puter = 0.0f;
+
+    static boolean bout = false;
+    static boolean bin = false;
+
+    public void display(GLAutoDrawable drawable) {
+
+        if (bout) {
+            zoom += plus;
+            if (zoom > batas1) {
+                bout = false;
+            }
+        }
+
+        if (bin) {
+            zoom -= plus;
+            if (zoom < batas2) {
+                bin = false;
+            }
+        }
+
+        GL gl = drawable.getGL();
+        GLU glu = new GLU();
+// Clear the drawing area
+        gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+// Reset the current matrix to the "identity"
+        gl.glLoadIdentity();
+
+        glu.gluLookAt(Cx, Cy, Cz,
+                Lx, Ly, Lz,
+                vertikal.x, vertikal.y, vertikal.z);
+
+        gl.glTranslatef(-1f, 0f, -18f);
+
+        gl.glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
+        gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
+
+        gl.glPushMatrix();
+        gl.glColor3d(1, 0, 0);
+        gl.glTranslatef(-0.95f, 1f, 1f);
+        Objek.Balok(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(-0.2f, 2f, 1.8f);
+        Objek.Bola(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(-1.5f, 2f, 3.5f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Tabung(gl);
+        gl.glPopMatrix();
+
+        
+
+        gl.glPushMatrix();
+        gl.glTranslatef(0.5f, 3.2f, 2f);
+        gl.glRotated(90, 1, 0, 0);
+        Objek.Tabung2(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(1f, 2.5f, 2f);
+        gl.glRotated(45, 0, 0, -1);
+        Objek.kotak(gl);
+        gl.glPopMatrix();
+                gl.glFlush();
+    }
+
+    public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
+    }
+
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mousePressed(MouseEvent e) {
+        oldMouseX = e.getX();
+        oldMouseY = e.getY();
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        Dimension size = e.getComponent().getSize();
+        float thetaY = 360.0f * ((float) (x - oldMouseX) / (float) size.width);
+        float thetaX = 360.0f * ((float) (oldMouseY - y) / (float) size.height);
+        oldMouseX = x;
+        oldMouseY = y;
+        view_rotx += thetaX;
+        view_roty += thetaY;
+    }
+
+    public void mouseMoved(MouseEvent e) {
+    }
+
+    public void keyTyped(KeyEvent ke) {
+    }
+
+    public void keyPressed(KeyEvent ke) {
+        System.out.println(ke.getKeyCode());
+        if (ke.getKeyCode() == 38) {
+            bout = true;
+        } else if (ke.getKeyCode() == 40) {
+            bin = true;
+        } else if (ke.getKeyCode() == 32) {
+            puter += 10;
+        }
+
+    }
+
+    public void keyReleased(KeyEvent ke) {
+
+    }
+
 }
