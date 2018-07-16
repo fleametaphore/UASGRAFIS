@@ -6,4 +6,4 @@ PERGERAKAN ZOOM IN ZOOM OUT PADA LENSA KAMERA
 ANGGOTA :
 Raden Rama Jakalana (151-111-043)
 Muhammad Alief Husnawan (151-111-113)
-Firda Riant
+Firda Riant (151-111-054)
