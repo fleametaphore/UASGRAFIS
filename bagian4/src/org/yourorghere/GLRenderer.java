@@ -25,7 +25,7 @@ public class GLRenderer implements GLEventListener {
         gl.setSwapInterval(1);
 
         // Setup the drawing area and shading mode
-        gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         gl.glShadeModel(GL.GL_SMOOTH); // try setting this to GL_FLAT and see what happens.
     }
 
@@ -55,14 +55,12 @@ public class GLRenderer implements GLEventListener {
         gl.glLoadIdentity();
 
         // Move the "drawing cursor" around
-        gl.glTranslatef(0.0f, 0.0f, -6.0f);
-        gl.glColor3f(1.0f, 0.0f, 0.0f);
-        Objek.Bola(gl);
+        gl.glTranslatef(-1.5f, 0.0f, -6.0f);
+        Objek.Balok(gl);
         
-         gl.glTranslatef(-3f, 0.0f, -4.0f);
-        gl.glColor3f(0.0f, 1.0f, 0.0f);
-        Objek.Tabung(gl);
-
+        // Move the "drawing cursor" to another position
+        gl.glTranslatef(3.0f, 0.0f, 0.0f);
+//      
         // Flush all drawing operations to the graphics card
         gl.glFlush();
     }
