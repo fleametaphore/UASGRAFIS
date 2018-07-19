@@ -21,12 +21,17 @@ public class Bagian4 implements GLEventListener, MouseListener, MouseMotionListe
     public static void main(String[] args) {
         Frame frame = new Frame("KAMERA - UAS GRAFIS");
         GLCanvas canvas = new GLCanvas();
-        canvas.addGLEventListener(new Bagian4());
-        canvas.addKeyListener(new Bagian4());
+        
+        canvas.addGLEventListener(new Uas_grafis());
+       
+        canvas.addKeyListener(new Uas_grafis());
+        
         frame.add(canvas);
         frame.setSize(1280, 800);
+        
         final Animator animator = new Animator(canvas);
         frame.addWindowListener(new WindowAdapter() {
+        
             @Override
             public void windowClosing(WindowEvent e) {
                 new Thread(new Runnable() {
@@ -57,16 +62,19 @@ public class Bagian4 implements GLEventListener, MouseListener, MouseMotionListe
     }
     private float view_rotx = 20.0f;
     private float view_roty = 30.0f;
+    
     private int oldMouseX;
     private int oldMouseY;
 
     float Cx = 0, Cy = 2.5f, Cz = 0;
     float Lx = 0, Ly = 2.5f, Lz = -10f;
+    
     vector vertikal = new vector(0f, 1f, 0f);//deklarasi awal vetor untuk gerakan naik & turun
 
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();
         gl.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+       
         gl.glShadeModel(GL.GL_FLAT);
 
         float ambient[] = {1.0f, 1.0f, 1.0f, 1.0f};
@@ -88,7 +96,7 @@ public class Bagian4 implements GLEventListener, MouseListener, MouseMotionListe
         gl.glMaterialfv(GL.GL_FRONT, GL.GL_DIFFUSE, mdiffuse, 0);
         gl.glMaterialfv(GL.GL_FRONT, GL.GL_SPECULAR, mspecular, 0);
         gl.glMaterialf(GL.GL_FRONT, GL.GL_SHININESS, mshine);
-        gl.glEnable(GL.GL_LIGHTING);//hilang
+//        gl.glEnable(GL.GL_LIGHTING);//hilang
         gl.glEnable(GL.GL_LIGHT0);
         gl.glEnable(GL.GL_DEPTH_TEST);
         gl.glEnable(GL.GL_NORMALIZE);
@@ -111,13 +119,11 @@ public class Bagian4 implements GLEventListener, MouseListener, MouseMotionListe
         gl.glMatrixMode(GL.GL_MODELVIEW);
         gl.glLoadIdentity();
     }
-    
+
     static float zoom = 1.86f;
-    static float out = 0.01f;
     static float plus = 0.003f;
     static float batas1 = 2.3f;
     static float batas2 = 1.87f;
-    static float rotkaret = 0.0f;
     static float puter = 0.0f;
 
     static boolean bout = false;
@@ -150,42 +156,73 @@ public class Bagian4 implements GLEventListener, MouseListener, MouseMotionListe
                 Lx, Ly, Lz,
                 vertikal.x, vertikal.y, vertikal.z);
 
-        gl.glTranslatef(-1f, 0f, -18f);
+        gl.glTranslatef(-1f, 0f, -10f);
 
         gl.glRotatef(view_rotx, 1.0f, 0.0f, 0.0f);
         gl.glRotatef(view_roty, 0.0f, 1.0f, 0.0f);
 
         gl.glPushMatrix();
-        gl.glColor3d(1, 0, 0);
-        gl.glTranslatef(-0.95f, 1f, 1f);
-        Objek.Balok(gl);
-        gl.glPopMatrix();
-
+        gl.glRotated(puter, 0, 0, 0);
         gl.glPushMatrix();
-        gl.glTranslatef(-0.2f, 2f, 1.8f);
-        Objek.Bola(gl);
-        gl.glPopMatrix();
-
-        gl.glPushMatrix();
-        gl.glTranslatef(-1.5f, 2f, 3.5f);
-        gl.glRotated(90, 0, 1, 0);
-        Objek.Tabung(gl);
+        gl.glTranslatef(-0.95f, 1.55f, 2.9f);
+        Objek.Body(gl);
         gl.glPopMatrix();
 
         
+        gl.glPushMatrix();
+        gl.glTranslatef(0.749f, 1.6f, 5.4f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Lcd(gl);
+        gl.glPopMatrix();
 
         gl.glPushMatrix();
-        gl.glTranslatef(0.5f, 3.2f, 2f);
+        gl.glTranslatef(1.06f, 2.3f, 4.2f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Flash(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(1.2f, 2.5f, 4.6f);
         gl.glRotated(90, 1, 0, 0);
-        Objek.Tabung2(gl);
+        gl.glRotated(25, 0, -1, 0);
+        Objek.Shutter(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
-        gl.glTranslatef(1f, 2.5f, 2f);
-        gl.glRotated(45, 0, 0, -1);
-        Objek.kotak(gl);
+        gl.glTranslatef(0.73f, 2f, 4.65f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Preset(gl);
         gl.glPopMatrix();
-                gl.glFlush();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(1f, 2f, 3.5f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Lensa(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(zoom, 2f, 3.5f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Zoom(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(1.33f, 2f, 3.5f);
+        gl.glRotated(90, 0, 1, 0);
+        gl.glRotated(zoom * 900, 0, 0, 1);
+        Objek.Karetz(gl);
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
+        gl.glTranslatef(1.72f, 2f, 3.5f);
+        gl.glRotated(90, 0, 1, 0);
+        Objek.Karetf(gl);
+        gl.glPopMatrix();
+        gl.glPopMatrix();
+
+
+        
+        gl.glFlush();
     }
 
     public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
