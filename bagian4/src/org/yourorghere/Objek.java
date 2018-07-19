@@ -227,3 +227,142 @@ public class Objek {
         gl.glPopMatrix();
 
     }
+    static void Lensa(GL gl) {
+        float BODY_LENGTH = 0.05f;
+        float BODY_RADIUS = 0.2f;
+        int SLICES = 30;
+        int STACKS = 30;
+        GLU glu = new GLU();
+        GLUquadric q = glu.gluNewQuadric();
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, BODY_RADIUS, BODY_RADIUS, BODY_LENGTH, SLICES, STACKS);
+        gl.glColor3d(0.5, 0.5, 0.5);
+        glu.gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+        gl.glTranslatef(0.0f, 0.0f, BODY_LENGTH);
+        glu.gluDisk(q, 0.0f, BODY_RADIUS, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0);
+        gl.glColor3d(0.8, 0.8, 0.8);
+        glu.gluCylinder(q, 0.2, 0.3, 0.01, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.01f);
+        gl.glColor3d(0.5, 0.5, 0.5);
+        glu.gluCylinder(q, 0.3, 0.35, 0.05, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.05f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.35, 0.35, 0.5, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.5f);
+        gl.glColor3d(0.5, 0.5, 0.5);
+        glu.gluCylinder(q, 0.35, 0.4, 0.05, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.05f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.4, 0.4, 0.2, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.35, 0.35, 0.2, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.2f);
+        gl.glColor3d(0.5, 0.5, 0.5);
+        glu.gluCylinder(q, 0.34, 0.4, 0, SLICES, STACKS);
+
+    }
+
+    static void Zoom(GL gl) {
+        float BODY_LENGTH = 0.05f;
+        float BODY_RADIUS = 0.2f;
+        int SLICES = 30;
+        int STACKS = 30;
+        GLU glu = new GLU();
+        GLUquadric q = glu.gluNewQuadric();
+
+        gl.glTranslatef(0.0f, 0.0f, -0.5f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.34, 0.34, 0.5, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.5f);
+        gl.glColor3d(0.5, 0.5, 0.5);
+        glu.gluCylinder(q, 0.34, 0.4, 0.01, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.01f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.4, 0.4, 0.08, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.07f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.34, 0.4, 0.01, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0f);
+        gl.glColor3d(0.5, 0.5, 0.5);
+        glu.gluCylinder(q, 0.4, 0.45, 0.03, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.03f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.45, 0.5, 0.5, SLICES, STACKS);
+
+    }
+
+    static void Karetz(GL gl) {
+        float BODY_LENGTH = 0.05f;
+        float BODY_RADIUS = 0.2f;
+        int SLICES = 30;
+        int STACKS = 30;
+        GLU glu = new GLU();
+        GLUquadric q = glu.gluNewQuadric();
+
+        gl.glTranslatef(0.0f, 0.0f, 0f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.36, 0.36, 0.25, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, -0.01f);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.35, 0.36, 0.01, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.26f);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.36, 0.35, 0.01, SLICES, STACKS);
+
+        //
+        gl.glTranslatef(0.0f, 0.36f, -0.25f);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.01, 0.01, 0.25, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, -0.72f, 0);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.01, 0.01, 0.25, SLICES, STACKS);
+
+        gl.glTranslatef(0.36f, 0.36f, 0);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.01, 0.01, 0.25, SLICES, STACKS);
+
+        gl.glTranslatef(-0.72f, 0f, 0);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.01, 0.01, 0.25, SLICES, STACKS);
+
+    }
+
+    static void Karetf(GL gl) {
+        float BODY_LENGTH = 0.05f;
+        float BODY_RADIUS = 0.2f;
+        int SLICES = 30;
+        int STACKS = 30;
+        GLU glu = new GLU();
+        GLUquadric q = glu.gluNewQuadric();
+
+        gl.glTranslatef(0.0f, 0.0f, 0f);
+        gl.glColor3d(0, 0, 0);
+        glu.gluCylinder(q, 0.405, 0.405, 0.1, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, -0.01f);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.4, 0.405, 0.01, SLICES, STACKS);
+
+        gl.glTranslatef(0.0f, 0.0f, 0.11f);
+        gl.glColor3d(0.3, 0.3, 0.3);
+        glu.gluCylinder(q, 0.405, 0.4, 0.01, SLICES, STACKS);
+
+    }
+}
